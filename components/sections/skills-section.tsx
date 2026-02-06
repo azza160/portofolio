@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Code2, Terminal, Languages } from 'lucide-react'
 import Image from 'next/image'
+import { Background } from '../background'
 
 export default function SkillsSection() {
     const skillCategories = [
@@ -145,8 +146,9 @@ export default function SkillsSection() {
     return (
         <section
             id="skills"
-            className="py-24 px-4 sm:px-6 lg:px-8 border-t border-border/10"
+            className="py-24 px-4 sm:px-6 lg:px-8 border-t border-border/10 relative"
         >
+            <Background />
             <div className="max-w-6xl mx-auto">
                 <motion.div
                     variants={containerVariants}

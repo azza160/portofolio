@@ -3,6 +3,7 @@
 import { motion, type Variants } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Background } from '../background'
 
 export default function HeroSection() {
     const scrollToSection = (id: string) => {
@@ -31,11 +32,9 @@ export default function HeroSection() {
     }
 
     return (
-        <section className="hero-gradient min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 flex items-center relative overflow-hidden" id="beranda">
-            {/* Gradient background elements */}
-            <div className="absolute top-20 right-0 w-72 h-72 bg-accent/10 rounded-full blur-3xl -z-10" />
-            <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl -z-10" />
-
+        <section className="hero-gradient  min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 flex items-center relative overflow-hidden" id="beranda">
+            {/* Minimalist background overlay if needed, otherwise rely on global background */}
+            <Background />
             <motion.div
                 variants={containerVariants}
                 initial="hidden"
@@ -79,75 +78,7 @@ export default function HeroSection() {
                     </Button>
                 </motion.div>
 
-                {/* Abstract visual element */}
-                <motion.div
-                    variants={itemVariants}
-                    className="mt-20 relative w-full h-80"
-                >
-                    <div className="absolute inset-0 rounded-2xl border border-border/20 bg-gradient-to-br from-secondary/5 to-accent/5 overflow-hidden">
-                        {/* Animated grid pattern */}
-                        <svg
-                            className="absolute inset-0 w-full h-full opacity-20"
-                            viewBox="0 0 100 100"
-                            preserveAspectRatio="none"
-                        >
-                            <defs>
-                                <pattern
-                                    id="grid"
-                                    width="10"
-                                    height="10"
-                                    patternUnits="userSpaceOnUse"
-                                >
-                                    <path
-                                        d="M 10 0 L 0 0 0 10"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="0.5"
-                                    />
-                                </pattern>
-                            </defs>
-                            <rect width="100" height="100" fill="url(#grid)" />
-                        </svg>
 
-                        {/* Floating elements */}
-                        <motion.div
-                            className="absolute top-8 left-8 w-12 h-12 border border-accent/30 rounded-lg"
-                            animate={{
-                                y: [0, -20, 0],
-                                x: [0, 10, 0],
-                            }}
-                            transition={{
-                                duration: 6,
-                                repeat: Number.POSITIVE_INFINITY,
-                                ease: 'easeInOut',
-                            }}
-                        />
-                        <motion.div
-                            className="absolute bottom-12 right-12 w-16 h-16 border-2 border-accent/20 rounded-full"
-                            animate={{
-                                y: [0, 20, 0],
-                                x: [0, -15, 0],
-                            }}
-                            transition={{
-                                duration: 8,
-                                repeat: Number.POSITIVE_INFINITY,
-                                ease: 'easeInOut',
-                            }}
-                        />
-                        <motion.div
-                            className="absolute top-1/2 left-1/2 w-8 h-8 bg-accent/20 rounded-lg transform -translate-x-1/2 -translate-y-1/2"
-                            animate={{
-                                scale: [1, 1.2, 1],
-                                opacity: [0.5, 1, 0.5],
-                            }}
-                            transition={{
-                                duration: 4,
-                                repeat: Number.POSITIVE_INFINITY,
-                                ease: 'easeInOut',
-                            }}
-                        />
-                    </div>
-                </motion.div>
             </motion.div>
         </section>
     )

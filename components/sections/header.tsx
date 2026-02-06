@@ -67,8 +67,8 @@ export default function Header({ isScrolled }: HeaderProps) {
             animate={{ y: 0 }}
             transition={{ duration: 0.5 }}
             className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled
-                ? 'bg-background/80 backdrop-blur-md border-b border-border/30 shadow-sm'
-                : 'bg-transparent'
+                ? 'bg-gray-50/60 dark:bg-gray-900/60 backdrop-blur-md border-b border-border/30 shadow-sm'
+                : 'bg-transparent dark:bg-transparent'
                 }`}
         >
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -196,7 +196,7 @@ export default function Header({ isScrolled }: HeaderProps) {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setIsOpen(false)}
-                            className="fixed inset-0 bg-background/60 backdrop-blur-sm z-[55] md:hidden"
+                            className="fixed inset-0 bg-gray-50/60 backdrop-blur-sm z-[55] md:hidden"
                         />
 
                         {/* Side Panel */}
