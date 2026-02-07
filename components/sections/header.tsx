@@ -67,44 +67,39 @@ export default function Header({ isScrolled }: HeaderProps) {
             animate={{ y: 0 }}
             transition={{ duration: 0.5 }}
             className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled
-                ? 'bg-gray-50/60 dark:bg-gray-900/60 backdrop-blur-md border-b border-border/30 shadow-sm'
+                ? 'bg-gray-50/60 dark:bg-gray-900/60 backdrop-blur-md border-b border-border/30 dark:border-border/70 shadow-sm dark:shadow-lg'
                 : 'bg-transparent dark:bg-transparent'
                 }`}
         >
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                 {/* Logo */}
-                <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className="flex items-center gap-2"
+                <a
+                    href="#"
+                    className="flex items-center gap-1 text-2xl font-extrabold tracking-tight group"
+                    aria-label="Azza - Home"
                 >
-                    <motion.div
-                        whileHover={{ scale: 1.06 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                        className="
-                w-[60px] h-10
-                rounded
-                bg-accent
-                flex items-center justify-center
-                text-accent-foreground
-                font-mono font-bold text-xl
-                cursor-pointer
-                shadow-sm
-                transition-colors duration-300
-                hover:bg-accent/90
-                hover:shadow-md
-                text-white
-                "
-                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    <span
+                        className="text-black dark:text-primary group-hover:text-accent transition-colors duration-300 dark:group-hover:text-accent
+"
+                        aria-hidden="true"
                     >
-                        &lt;/A&gt;
-                    </motion.div>
-
-                    <span className="font-semibold text-lg hidden sm:block">
-                        Azza.dev
+                        &lt;
                     </span>
-                </motion.div>
+                    <span className="relative">
+                        <span className="text-accent font-extrabold">Azza</span>
+                        <span
+                            className="absolute -bottom-0.5 left-0 w-full h-0.5 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                            aria-hidden="true"
+                        ></span>
+                    </span>
+                    <span
+                        className="text-black dark:text-primary group-hover:text-accent transition-colors duration-300 dark:group-hover:text-accent
+"
+                        aria-hidden="true"
+                    >
+                        /&gt;
+                    </span>
+                </a>
 
                 {/* Desktop Navigation */}
                 <nav className="hidden md:flex items-center gap-8">
@@ -115,7 +110,7 @@ export default function Header({ isScrolled }: HeaderProps) {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 + i * 0.1 }}
                             onClick={() => scrollToSection(item.id)}
-                            className={`text-sm font-medium transition-colors cursor-pointer ${activeSection === item.id
+                            className={`text-sm 2xl:tex-base font-medium transition-colors cursor-pointer ${activeSection === item.id
                                 ? 'text-accent'
                                 : 'text-muted-foreground hover:text-foreground'
                                 }`}
@@ -126,37 +121,7 @@ export default function Header({ isScrolled }: HeaderProps) {
                 </nav>
 
                 {/* Status & CTA */}
-                <div className="flex items-center gap-3">
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="flex items-center"
-                    >
-                        <Button
-                            onClick={() => scrollToSection('contact')}
-                            className={`
-                                relative
-                                hidden md:inline-flex
-                                items-center gap-2
-                                px-12 py-5
-                                cursor-pointer
-                                bg-accent
-                                text-base
-                                font-semibold
-                                rounded
-                                border-2 border-accent
-                                text-white
-                                transition-all duration-300 ease-out
-                                hover:scale-105
-                                hover:bg-accent/90
-                            `}
-                        >
-                            <Mail className="w-4 h-4" />
-                            Kontak
-                        </Button>
-                    </motion.div>
-
+                <div className="flex items-center md:hidden">
                     {/* Animated Hamburger Menu Button */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
@@ -196,7 +161,7 @@ export default function Header({ isScrolled }: HeaderProps) {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setIsOpen(false)}
-                            className="fixed inset-0 bg-gray-50/60 backdrop-blur-sm z-[55] md:hidden"
+                            className="fixed inset-0 bg-gray-50/60 backdrop-blur-sm z-[55] dark:bg-gray-900/60 md:hidden"
                         />
 
                         {/* Side Panel */}
@@ -215,7 +180,7 @@ export default function Header({ isScrolled }: HeaderProps) {
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: 0.1 * i }}
                                         onClick={() => scrollToSection(item.id)}
-                                        className={`text-lg font-medium text-left transition-colors ${activeSection === item.id
+                                        className={`text-lg font-medium text-left transition-colors cursor-pointer ${activeSection === item.id
                                             ? 'text-accent'
                                             : 'text-muted-foreground hover:text-foreground'
                                             }`}
@@ -223,20 +188,7 @@ export default function Header({ isScrolled }: HeaderProps) {
                                         {item.label}
                                     </motion.button>
                                 ))}
-                                <motion.div
-                                    initial={{ opacity: 0, x: 20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.1 * navItems.length }}
-                                    className="pt-4 border-t border-border/50"
-                                >
-                                    <Button
-                                        onClick={() => scrollToSection('contact')}
-                                        className="w-full bg-accent text-white flex rounded py-5 items-center justify-center gap-2"
-                                    >
-                                        <Mail className="w-4 h-4" />
-                                        Kontak
-                                    </Button>
-                                </motion.div>
+
                             </nav>
                         </motion.div>
                     </>

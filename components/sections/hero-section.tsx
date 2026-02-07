@@ -45,7 +45,7 @@ export default function HeroSection() {
                     variants={itemVariants}
                     className="text-5xl sm:text-6xl lg:text-7xl font-bold text-balance leading-tight mb-6"
                 >
-                    Membangun website yang{' '}
+                    Building website yang{' '}
                     <span className="text-accent">rapi, responsif</span>, dan mudah digunakan
                 </motion.h1>
 
