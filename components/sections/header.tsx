@@ -10,11 +10,10 @@ interface HeaderProps {
 }
 
 const navItems = [
-    { label: 'Beranda', id: 'beranda' },
-    { label: 'Tentang', id: 'about' },
-    { label: 'Proyek', id: 'work' },
-    { label: 'Keahlian', id: 'skills' },
-    { label: 'Sertifikat', id: 'sertifikat' },
+    { label: 'Home', id: 'home' },
+    { label: 'About', id: 'about' },
+    { label: 'Projects', id: 'work' },
+    { label: 'Skills', id: 'skills' },
 ]
 
 export default function Header({ isScrolled }: HeaderProps) {
@@ -110,7 +109,7 @@ export default function Header({ isScrolled }: HeaderProps) {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 + i * 0.1 }}
                             onClick={() => scrollToSection(item.id)}
-                            className={`text-sm 2xl:tex-base font-medium transition-colors cursor-pointer ${activeSection === item.id
+                            className={`text-sm 2xl:text-base font-medium transition-colors cursor-pointer ${activeSection === item.id
                                 ? 'text-accent'
                                 : 'text-muted-foreground hover:text-foreground'
                                 }`}

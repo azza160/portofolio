@@ -58,9 +58,6 @@ export const Background = () => {
         dark:bg-pink-500/20 dark:blur-[120px]"
             />
 
-            {/* Noise */}
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] 
-    opacity-[0.03] dark:opacity-[0.05] mix-blend-overlay pointer-events-none" />
 
             {/* Bottom Gradient - More smooth transition */}
             <div className="absolute bottom-0 left-0 right-0 h-48 
