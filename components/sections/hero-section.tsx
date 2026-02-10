@@ -104,7 +104,7 @@ export default function HeroSection() {
 
                     </a>
                     <a
-                        href="/cv/Akbar-Wijaya-CV.pdf"
+                        href="#"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-accent text-white text-sm md:text-base font-semibold rounded-full hover:bg-accent/80 transition-all duration-300 hover:scale-105 text-center inline-flex items-center justify-center gap-2"
