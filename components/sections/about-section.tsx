@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import Heading from './heading'
 import { Button } from '@/components/ui/button'
-import { Github, Linkedin, Instagram, ArrowRight, Quote } from 'lucide-react'
+import { Github, Linkedin, Instagram, ArrowRight, Quote, Download } from 'lucide-react'
 import Image from 'next/image'
 
 export default function AboutSection() {
@@ -58,14 +58,15 @@ export default function AboutSection() {
                         {/* Greeting & Intro */}
                         <motion.div variants={itemVariants} className="space-y-4">
                             <h3 className="text-4xl lg:text-5xl font-display font-bold tracking-tight">
-                                Hello, I'm <span className="text-primary relative inline-block">
+                                Hello, I'm <span className="text-accent relative inline-block">
                                     Azza
                                     <span className="absolute bottom-0 left-0 w-full h-2 bg-primary/20 -rotate-2 rounded-full"></span>
                                 </span>
                             </h3>
-                            <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
-                                Seorang <span className="font-semibold text-foreground">junior web developer</span> berusia 22 tahun yang berfokus pada detail dan kualitas. Saya membangun aplikasi web yang tidak hanya berfungsi dengan baik, tetapi juga memiliki antarmuka yang elegan dan pengalaman pengguna yang menyenangkan.
+                            <p className="text-lg text-muted-foreground leading-relaxed  text-justify">
+                                A <span className="font-semibold text-accent">22-year-old junior web developer</span> with a strong attention to detail and a focus on quality. I build web applications that not only work reliably, but also deliver clean interfaces and enjoyable user experiences. I’m a hardworking learner who enjoys tackling new challenges, and I pay close attention to every detail—ensuring each website is responsive across devices and optimized for performance.
                             </p>
+
                         </motion.div>
 
                         {/* Quote Card */}
@@ -73,20 +74,37 @@ export default function AboutSection() {
                             variants={itemVariants}
                             className="relative group"
                         >
-                            <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
-                            <div className="relative p-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 shadow-sm hover:shadow-md transition-all duration-300">
+                            <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 to-accent/10 rounded blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
+                            <div className="relative p-6 rounded bg-card/50 backdrop-blur-sm border border-border/50 shadow-sm hover:shadow-md transition-all duration-300">
                                 <Quote className="w-8 h-8 text-primary/40 mb-3" />
                                 <blockquote className="text-lg font-medium italic text-foreground/90">
-                                    "Tantangan adalah pemicu utama untuk berkembang. Saya menikmati setiap proses belajar, terutama ketika memecahkan masalah teknis yang kompleks."
+                                    "I believe good websites are built through attention to detail, continuous learning, and thoughtful problem-solving."
                                 </blockquote>
                             </div>
                         </motion.div>
 
                         {/* Button & Socials */}
-                        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 sm:items-center pt-2">
-                            <Button className="w-fit rounded-full px-8 py-6 text-base shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 group">
+                        <motion.div variants={itemVariants} className="flex flex-col  sm:flex-row gap-6 items-center  pt-2">
+                            <Button
+                                className="
+        group relative w-fit
+        rounded px-8 py-7 sm:py-6
+        text-base font-semibold
+        bg-accent text-white
+        w-full sm:w-auto
+        shadow-lg shadow-accent/25
+        transition-all cursor-pointer duration-300 ease-out
+        hover:scale-105 hover:shadow-accent/40
+    "
+                            >
                                 Download CV
-                                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                <Download
+                                    className="
+            ml-2 w-5 h-5
+            transition-transform duration-300
+            group-hover:translate-y-0.5
+        "
+                                />
                             </Button>
 
                             <div className="flex gap-4">
@@ -96,11 +114,29 @@ export default function AboutSection() {
                                         href={social.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="p-3 bg-card hover:bg-primary/5 border border-border/50 rounded-xl hover:scale-110 hover:-rotate-3 transition-all duration-300 group shadow-sm hover:shadow"
+                                        className="
+        p-3 bg-card
+        border border-border/50
+        rounded-full
+        shadow-sm hover:shadow
+        transition-all duration-300
+        hover:scale-110 hover:-rotate-3
+        hover:bg-accent
+        group
+    "
                                         aria-label={social.label}
                                     >
-                                        <social.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                                        <social.icon
+                                            className="
+            w-5 h-5
+            text-muted-foreground
+            transition-colors
+            group-hover:text-white
+        "
+                                        />
                                     </a>
+
+
                                 ))}
                             </div>
                         </motion.div>
@@ -115,17 +151,17 @@ export default function AboutSection() {
                             onHoverEnd={() => setIsImageHovered(false)}
                         >
                             {/* Decorative Background Glows */}
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -z-10 animate-pulse" />
-                            <div className="absolute bottom-10 left-10 w-40 h-40 bg-accent/20 rounded-full blur-2xl -z-10" />
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -z-10 animate-pulse pointer-events-none" />
+                            <div className="absolute bottom-10 left-10 w-40 h-40 bg-accent/20 rounded-full blur-2xl -z-10 pointer-events-none" />
 
                             {/* Orbital Decoration - Modern Element */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-primary/5 rounded-full -z-10 scale-90 group-hover:scale-100 transition-transform duration-1000" />
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[105%] h-[105%] border border-accent/10 rounded-full -z-10 scale-95 group-hover:scale-105 transition-transform duration-700" />
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-primary/5 rounded-full -z-10 scale-90 group-hover:scale-100 transition-transform duration-1000 pointer-events-none" />
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[105%] h-[105%] border border-accent/10 rounded-full -z-10 scale-95 group-hover:scale-105 transition-transform duration-700 pointer-events-none" />
 
                             {/* Stacked Cards Background Layers */}
                             {/* Bottom Layer */}
                             <motion.div
-                                className="absolute inset-0 bg-muted/80 dark:bg-muted/20 rounded-[2rem] -rotate-6 translate-x-4 translate-y-4 -z-20 border-4 border-card shadow-sm"
+                                className="hidden sm:block absolute inset-0 bg-muted/80 dark:bg-muted/20 rounded-[2rem] -rotate-6 translate-x-4 translate-y-4 -z-20 border-4 border-card shadow-sm"
                                 initial={false}
                                 animate={
                                     isImageHovered
@@ -141,7 +177,7 @@ export default function AboutSection() {
                             />
                             {/* Middle Layer */}
                             <motion.div
-                                className="absolute inset-0 bg-muted/80 dark:bg-muted/20 rounded-[2rem] -rotate-3 translate-x-2 translate-y-2 -z-10 border-4 border-card shadow-sm"
+                                className="hidden sm:block absolute inset-0 bg-muted/80 dark:bg-muted/20 rounded-[2rem] -rotate-3 translate-x-2 translate-y-2 -z-10 border-4 border-card shadow-sm"
                                 initial={false}
                                 animate={
                                     isImageHovered
@@ -187,15 +223,15 @@ export default function AboutSection() {
                             </motion.div>
 
                             {/* Floating Decorative Elements */}
-                            <div className="absolute -top-10 -right-10 w-24 h-24 border-2 border-primary/10 rounded-full animate-[spin_12s_linear_infinite]" />
-                            <div className="absolute bottom-1/4 -left-12 w-8 h-8 flex flex-wrap gap-1 opacity-40 group-hover:opacity-100 transition-opacity">
+                            <div className="absolute -top-10 -right-10 w-24 h-24 border-2 border-primary/10 rounded-full animate-[spin_12s_linear_infinite] pointer-events-none" />
+                            <div className="absolute bottom-1/4 -left-12 w-8 h-8 flex flex-wrap gap-1 opacity-40 group-hover:opacity-100 transition-opacity pointer-events-none">
                                 {[...Array(9)].map((_, i) => (
                                     <div key={i} className="w-1.5 h-1.5 rounded-full bg-primary" />
                                 ))}
                             </div>
 
                             {/* Highlight Marker */}
-                            <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-accent/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500" />
+                            <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-accent/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
                         </motion.div>
                     </div>
 

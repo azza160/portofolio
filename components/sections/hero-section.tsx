@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-
+import { FolderKanban, Mail } from "lucide-react"
 import { Background } from '../background'
 
 export default function HeroSection() {
@@ -11,18 +11,18 @@ export default function HeroSection() {
         <section
             id="home"
             aria-label="home"
-            className="w-full mx-auto min-h-screen flex flex-col justify-center items-center relative overflow-hidden px-4 sm:px-6 lg:px-8 py-16 md:py-24"
+            className="w-full mx-auto min-h-screen flex flex-col justify-center items-center relative overflow-hidden px-4 sm:px-6 lg:px-8 py-20 md:py-24"
         >
             {/* Minimalist background overlay if needed, otherwise rely on global background */}
             <Background />
 
             {/* Decorative accent - hidden on mobile */}
             <div
-                className="hidden md:block absolute top-20 right-10 lg:right-20 w-4 h-4 bg-accent rounded-full opacity-60"
+                className="hidden md:block absolute top-20 right-10 lg:right-20 w-4 h-4 bg-accent rounded-full opacity-60 pointer-events-none"
                 aria-hidden="true"
             ></div>
             <div
-                className="hidden md:block absolute bottom-40 left-8 lg:left-16 w-2 h-2 bg-accent rounded-full opacity-40"
+                className="hidden md:block absolute bottom-40 left-8 lg:left-16 w-2 h-2 bg-accent rounded-full opacity-40 pointer-events-none"
                 aria-hidden="true"
             ></div>
 
@@ -96,42 +96,43 @@ export default function HeroSection() {
                     className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center mb-4"
                     aria-label="Primary actions"
                 >
+                    {/* Button 1: View Projects */}
                     <a
                         href="#projects"
-                        className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-black text-white text-sm md:text-base font-semibold rounded-full hover:bg-gray-600 transition-all duration-300 hover:scale-105 text-center"
+                        className="
+            relative w-full sm:w-auto
+            px-8 md:px-9 py-4 md:py-4
+            flex items-center justify-center gap-3
+            text-sm md:text-base font-semibold
+            bg-accent text-white rounded
+            shadow-md shadow-accent/40
+            transition-all duration-300 ease-out
+            hover:scale-105 hover:shadow-lg hover:shadow-accent/60
+        "
                     >
+                        <FolderKanban className="w-7 h-7 md:w-8 md:h-8" />
                         View Projects
+                    </a>
 
-                    </a>
-                    <a
-                        href="#"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-accent text-white text-sm md:text-base font-semibold rounded-full hover:bg-accent/80 transition-all duration-300 hover:scale-105 text-center inline-flex items-center justify-center gap-2"
-                    >
-                        <svg
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            aria-hidden="true"
-                        >
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                            <circle cx="12" cy="12" r="3" />
-                        </svg>
-                        <span>View CV</span>
-                    </a>
+                    {/* Button 2: Get in Touch */}
                     <a
                         href="#contact"
-                        className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 border-2 border-black text-black text-sm md:text-base font-semibold rounded-full hover:bg-black hover:text-white transition-all duration-300 text-center"
+                        className="
+            relative w-full sm:w-auto
+            px-8 md:px-9 py-4 md:py-4
+            flex items-center justify-center gap-3
+            text-sm md:text-base font-semibold
+            border-2 border-accent text-accent rounded
+            transition-all duration-300 ease-out
+            hover:scale-105 hover:bg-accent/10
+            hover:shadow-[0_0_15px_rgba(var(--accent-rgb),0.45)]
+        "
                     >
+                        <Mail className="w-7 h-7 md:w-8 md:h-8" />
                         Get in Touch
                     </a>
                 </motion.nav>
+
             </div>
 
             {/* Scroll indicator - hidden on very small screens */}

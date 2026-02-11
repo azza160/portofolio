@@ -61,93 +61,95 @@ export default function Header({ isScrolled }: HeaderProps) {
     }, [])
 
     return (
-        <motion.header
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.5 }}
-            className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled
-                ? 'bg-gray-50/60 dark:bg-gray-900/60 backdrop-blur-md border-b border-border/30 dark:border-border/70 shadow-sm dark:shadow-lg'
-                : 'bg-transparent dark:bg-transparent'
-                }`}
-        >
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-                {/* Logo */}
-                <a
-                    href="#"
-                    className="flex items-center gap-1 text-2xl font-extrabold tracking-tight group"
-                    aria-label="Azza - Home"
-                >
-                    <span
-                        className="text-black dark:text-primary group-hover:text-accent transition-colors duration-300 dark:group-hover:text-accent
-"
-                        aria-hidden="true"
+        <>
+            <motion.header
+                initial={{ y: -100 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.5 }}
+                className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled
+                    ? 'bg-gray-50/60 dark:bg-gray-900/60 backdrop-blur-md border-b border-border/30 dark:border-border/70 shadow-sm dark:shadow-lg'
+                    : 'bg-transparent dark:bg-transparent'
+                    }`}
+            >
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                    {/* Logo */}
+                    <a
+                        href="#"
+                        className="flex items-center gap-1 text-2xl font-extrabold tracking-tight group"
+                        aria-label="Azza - Home"
                     >
-                        &lt;
-                    </span>
-                    <span className="relative">
-                        <span className="text-accent font-extrabold">Azza</span>
                         <span
-                            className="absolute -bottom-0.5 left-0 w-full h-0.5 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
-                            aria-hidden="true"
-                        ></span>
-                    </span>
-                    <span
-                        className="text-black dark:text-primary group-hover:text-accent transition-colors duration-300 dark:group-hover:text-accent
+                            className="text-black dark:text-primary group-hover:text-accent transition-colors duration-300 dark:group-hover:text-accent
 "
-                        aria-hidden="true"
-                    >
-                        /&gt;
-                    </span>
-                </a>
-
-                {/* Desktop Navigation */}
-                <nav className="hidden md:flex items-center gap-8">
-                    {navItems.map((item, i) => (
-                        <motion.button
-                            key={item.id}
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 + i * 0.1 }}
-                            onClick={() => scrollToSection(item.id)}
-                            className={`text-sm 2xl:text-base font-medium transition-colors cursor-pointer ${activeSection === item.id
-                                ? 'text-accent'
-                                : 'text-muted-foreground hover:text-foreground'
-                                }`}
+                            aria-hidden="true"
                         >
-                            {item.label}
-                        </motion.button>
-                    ))}
-                </nav>
+                            &lt;
+                        </span>
+                        <span className="relative">
+                            <span className="text-accent font-extrabold">Azza</span>
+                            <span
+                                className="absolute -bottom-0.5 left-0 w-full h-0.5 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                                aria-hidden="true"
+                            ></span>
+                        </span>
+                        <span
+                            className="text-black dark:text-primary group-hover:text-accent transition-colors duration-300 dark:group-hover:text-accent
+"
+                            aria-hidden="true"
+                        >
+                            /&gt;
+                        </span>
+                    </a>
 
-                {/* Status & CTA */}
-                <div className="flex items-center md:hidden">
-                    {/* Animated Hamburger Menu Button */}
-                    <button
-                        onClick={() => setIsOpen(!isOpen)}
-                        className="md:hidden relative w-10 h-10 z-[60] focus:outline-none cursor-pointer"
-                    >
-                        {/* Top line */}
-                        <motion.span
-                            animate={isOpen ? { rotate: 45 } : { rotate: 0, y: -8 }}
-                            transition={{ duration: 0.25 }}
-                            className="absolute left-1/2 top-1/2 w-6 h-0.5 bg-foreground -translate-x-1/2"
-                        />
-
-                        {/* Middle line */}
-                        <motion.span
-                            animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-                            transition={{ duration: 0.2 }}
-                            className="absolute left-1/2 top-1/2 w-6 h-0.5 bg-foreground -translate-x-1/2"
-                        />
-
-                        {/* Bottom line */}
-                        <motion.span
-                            animate={isOpen ? { rotate: -45 } : { rotate: 0, y: 8 }}
-                            transition={{ duration: 0.25 }}
-                            className="absolute left-1/2 top-1/2 w-6 h-0.5 bg-foreground -translate-x-1/2"
-                        />
-                    </button>
+                    {/* Desktop Navigation */}
+                    <nav className="hidden md:flex items-center gap-8">
+                        {navItems.map((item, i) => (
+                            <motion.button
+                                key={item.id}
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.2 + i * 0.1 }}
+                                onClick={() => scrollToSection(item.id)}
+                                className={`text-sm 2xl:text-base font-medium transition-colors cursor-pointer ${activeSection === item.id
+                                    ? 'text-accent'
+                                    : 'text-muted-foreground hover:text-foreground'
+                                    }`}
+                            >
+                                {item.label}
+                            </motion.button>
+                        ))}
+                    </nav>
                 </div>
+
+            </motion.header>
+
+            {/* Fixed Mobile Hamburger Container */}
+            <div className="fixed top-0 right-0 z-[70] md:hidden h-16 flex items-center px-4 sm:px-6">
+                <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="relative w-10 h-10 focus:outline-none cursor-pointer"
+                >
+                    {/* Top line */}
+                    <motion.span
+                        animate={isOpen ? { rotate: 45 } : { rotate: 0, y: -8 }}
+                        transition={{ duration: 0.25 }}
+                        className="absolute left-1/2 top-1/2 w-6 h-0.5 bg-foreground -translate-x-1/2"
+                    />
+
+                    {/* Middle line */}
+                    <motion.span
+                        animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute left-1/2 top-1/2 w-6 h-0.5 bg-foreground -translate-x-1/2"
+                    />
+
+                    {/* Bottom line */}
+                    <motion.span
+                        animate={isOpen ? { rotate: -45 } : { rotate: 0, y: 8 }}
+                        transition={{ duration: 0.25 }}
+                        className="absolute left-1/2 top-1/2 w-6 h-0.5 bg-foreground -translate-x-1/2"
+                    />
+                </button>
             </div>
 
             {/* Mobile Navigation Panel */}
@@ -193,6 +195,6 @@ export default function Header({ isScrolled }: HeaderProps) {
                     </>
                 )}
             </AnimatePresence>
-        </motion.header>
+        </>
     )
 }
