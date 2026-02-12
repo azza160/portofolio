@@ -8,7 +8,7 @@ import AboutSection from '@/components/sections/about-section'
 import SkillsSection from '@/components/sections/skills-section'
 import ProjectsSection from '@/components/sections/projects-section'
 import ContactSection from '@/components/sections/contact-section'
-
+import PortfolioSection from '@/components/sections/portofolio'
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false)
 
@@ -25,10 +25,8 @@ export default function Home() {
       <Header isScrolled={isScrolled} />
       <HeroSection />
       <AboutSection />
-      <SkillsSection />
-      <ProjectsSection />
+      <PortfolioSection />
       <ContactSection />
-
     </main>
   )
 }

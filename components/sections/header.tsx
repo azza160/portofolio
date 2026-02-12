@@ -12,8 +12,9 @@ interface HeaderProps {
 const navItems = [
     { label: 'Home', id: 'home' },
     { label: 'About', id: 'about' },
-    { label: 'Projects', id: 'work' },
-    { label: 'Skills', id: 'skills' },
+    { label: 'Portofolio', id: 'portofolio' },
+    { label: 'Contact', id: 'contact' }
+
 ]
 
 export default function Header({ isScrolled }: HeaderProps) {

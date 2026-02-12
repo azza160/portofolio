@@ -93,7 +93,7 @@ export default function AboutSection() {
         bg-accent text-white
         w-full sm:w-auto
         shadow-lg shadow-accent/25
-        transition-all cursor-pointer duration-300 ease-out
+        transition-all duration-300 ease-out
         hover:scale-105 hover:shadow-accent/40
     "
                             >
