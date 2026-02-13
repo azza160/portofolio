@@ -20,7 +20,9 @@ import {
     Globe,
     Layout,
     Smartphone,
-    Code
+    Code,
+    Eye,
+    ArrowRight
 } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -67,7 +69,7 @@ const PROJECTS: Project[] = [
         id: "2",
         title: "Social Media App",
         description: "A modern social platform featuring real-time messaging, post sharing, and user interactions.",
-        image: "/img/portofolio.jpg",
+        image: "/img/project.2.jpg",
         liveUrl: "https://example.com",
         status: "live",
         tech: ["React", "Node.js", "Socket.io"],
@@ -76,7 +78,7 @@ const PROJECTS: Project[] = [
         id: "3",
         title: "Portfolio v1",
         description: "My previous portfolio website showcasing my early work and development journey.",
-        image: "/img/portofolio.jpg",
+        image: "/img/project.3.jpg",
         status: "private",
         tech: ["HTML", "CSS", "JavaScript"],
     },
@@ -155,20 +157,23 @@ const TabButton = ({
     <button
         onClick={onClick}
         className={cn(
-            "relative px-6 py-3 text-sm sm:text-base font-medium transition-all duration-300 rounded-full",
+            "relative flex-1 px-4 py-4 cursor-pointer text-sm sm:text-base font-medium transition-all duration-300 rounded-md flex flex-col items-center justify-center gap-2",
             active
                 ? "text-primary-foreground"
-                : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted/80"
         )}
     >
         {active && (
             <motion.div
                 layoutId="activeTab"
-                className="absolute inset-0 bg-accent rounded-full shadow-md shadow-accent/25"
+                className="absolute inset-0 bg-accent rounded-lg shadow-md shadow-accent/25"
                 transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
             />
         )}
-        <span className="relative z-10 flex items-center gap-2">{children}</span>
+
+        <span className="relative z-10 flex flex-col items-center gap-1 dark:text-white">
+            {children}
+        </span>
     </button>
 );
 
@@ -177,15 +182,15 @@ const ProjectCard = ({ project }: { project: Project }) => (
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="group relative bg-card border border-border/50 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:shadow-accent/10 transition-all duration-300 flex flex-col h-full"
+        className="group relative bg-card border border-border/50 rounded-md p-2 overflow-hidden shadow-sm hover:shadow-lg hover:shadow-accent/10 transition-all duration-300 flex flex-col h-full"
     >
         {/* Image Container */}
-        <div className="relative aspect-video overflow-hidden bg-muted">
+        <div className="relative rounded-md border  aspect-video overflow-hidden bg-muted">
             <Image
                 src={project.image}
                 alt={project.title}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-cover rounded-md transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -210,24 +215,42 @@ const ProjectCard = ({ project }: { project: Project }) => (
 
             {/* Action Button */}
             <div className="mt-auto">
-                {project.status === "live" ? (
-                    <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent/80 transition-colors"
+                <div className="flex justify-between items-center">
+                    {project.status === "live" ? (
+                        <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent/80 transition-colors"
+                        >
+                            Live Demo <ExternalLink className="w-4 h-4" />
+                        </a>
+                    ) : project.status === "private" ? (
+                        <span className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground/60 cursor-not-allowed">
+                            <Lock className="w-4 h-4" /> Private Repository
+                        </span>
+                    ) : (
+                        <span className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground/60 cursor-not-allowed">
+                            <Clock className="w-4 h-4" /> Coming Soon
+                        </span>
+                    )}
+
+                    <Button
+
+                        className="
+        inline-flex items-center gap-1
+        bg-accent text-accent-foreground
+        dark:text-white
+        hover:opacity-90 px-5
+        transition-all duration-300
+        rounded
+    "
                     >
-                        Live Demo <ExternalLink className="w-4 h-4" />
-                    </a>
-                ) : project.status === "private" ? (
-                    <span className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground/60 cursor-not-allowed">
-                        <Lock className="w-4 h-4" /> Private Repository
-                    </span>
-                ) : (
-                    <span className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground/60 cursor-not-allowed">
-                        <Clock className="w-4 h-4" /> Coming Soon
-                    </span>
-                )}
+                        Details
+                        <ArrowRight className="w-4 h-4" />
+                    </Button>
+
+                </div>
             </div>
         </div>
     </motion.div>
@@ -295,11 +318,20 @@ export default function PortfolioSection() {
             <Background />
 
             <div className="max-w-6xl mx-auto relative z-10">
-                <Heading title="PORTFOLIO" />
+                <Heading title="PORTFOLIO" deskripsi="This section showcases my projects, certifications, and technical skills." />
 
                 {/* --- Tabs --- */}
-                <div className="flex justify-center mb-12">
-                    <div className="inline-flex flex-wrap justify-center gap-2 p-1.5 bg-card/80 backdrop-blur-md rounded-full border border-border/50 shadow-sm">
+                <div className="flex justify-center mb-8 mt-12">
+                    <div className="
+    flex w-full gap-3 p-1.5
+    bg-gray-50 dark:bg-gray-900
+    lg:py-3 lg:px-3 py-2 px-2
+    border border-border 
+  
+    rounded-md
+">
+
+
                         <TabButton
                             active={activeTab === "projects"}
                             onClick={() => setActiveTab("projects")}

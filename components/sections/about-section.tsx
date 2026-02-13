@@ -43,7 +43,7 @@ export default function AboutSection() {
         >
             <div className="max-w-6xl mx-auto">
                 {/* Heading Block - Unchanged as requested */}
-                <Heading title="ABOUT ME" />
+                <Heading title="ABOUT ME" deskripsi="In this section, I share a short overview of myself and my background." />
 
                 <motion.div
                     className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center"
