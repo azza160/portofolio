@@ -111,7 +111,7 @@ const CERTIFICATES: Certificate[] = [
         title: "Full Stack Web Development",
         issuer: "Udemy",
         date: "2025",
-        image: "/img/sertificate.jpg",
+        image: "/img/sertificates/sertificate2.jpg",
     },
     {
         id: "2",
@@ -274,15 +274,15 @@ const CertificateCard = ({
     <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="group relative cursor-pointer rounded-xl overflow-hidden border border-border/50 bg-card shadow-sm hover:shadow-md transition-all duration-300"
+        className="group relative cursor-pointer rounded-md overflow-hidden border border-border/50 bg-card shadow-sm hover:shadow-md transition-all duration-300"
         onClick={() => onView(cert)}
     >
-        <div className="aspect-[4/3] relative bg-muted">
+        <div className="aspect-[4/3] p-4 relative bg-muted">
             <Image
                 src={cert.image}
                 alt={cert.title}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-cover p-2 transition-transform duration-500 group-hover:scale-105"
             />
             {/* Hover Overlay */}
             <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-white">
@@ -290,10 +290,7 @@ const CertificateCard = ({
                 <span className="text-sm font-medium tracking-wide">View Certificate</span>
             </div>
         </div>
-        <div className="p-4 border-t border-border/50">
-            <h4 className="font-semibold text-foreground line-clamp-1">{cert.title}</h4>
-            <p className="text-xs text-muted-foreground mt-1">{cert.issuer} • {cert.date}</p>
-        </div>
+
     </motion.div>
 );
 
@@ -301,7 +298,7 @@ const TechCard = ({ stack }: { stack: TechStack }) => (
     <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        whileHover={{ y: -5 }}
+        whileHover={{ y: -8 }}
         className="
             cursor-pointer
             flex flex-col items-center justify-center
@@ -310,7 +307,7 @@ const TechCard = ({ stack }: { stack: TechStack }) => (
             bg-card
             border border-border/50
             shadow-sm
-            hover:shadow-md hover:border-accent/30
+            hover:shadow-lg hover:border-accent/80
             transition-all duration-300
         "
     >
