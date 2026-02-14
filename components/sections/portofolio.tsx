@@ -27,6 +27,10 @@ import {
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import ReactIcon from "@/public/img/react.svg"
+import NextIcon from "@/public/img/nextjs.svg"
+import LaravelIcon from "@/public/img/laravel.svg"
+import InertiaIcon from "@/public/img/inertia.svg"
 
 // --- Types ---
 type Project = {
@@ -50,8 +54,8 @@ type Certificate = {
 type TechStack = {
     id: string;
     name: string;
-    icon: React.ElementType;
-    category: "frontend" | "backend" | "tools";
+    icon: string;
+
 };
 
 // --- Dummy Data ---
@@ -133,15 +137,19 @@ const CERTIFICATES: Certificate[] = [
 ];
 
 const TECH_STACKS: TechStack[] = [
-    { id: "1", name: "React", icon: Code, category: "frontend" },
-    { id: "2", name: "Next.js", icon: Globe, category: "frontend" },
-    { id: "3", name: "TypeScript", icon: Code, category: "frontend" },
-    { id: "4", name: "Tailwind CSS", icon: Layout, category: "frontend" },
-    { id: "5", name: "Node.js", icon: Cpu, category: "backend" },
-    { id: "6", name: "PostgreSQL", icon: Database, category: "backend" },
-    { id: "7", name: "React Native", icon: Smartphone, category: "frontend" },
-    { id: "8", name: "Prisma", icon: Database, category: "backend" },
-];
+    { id: "1", name: "React", icon: "/img/icons/react.svg" },
+    { id: "2", name: "Next.js", icon: "/img/icons/nextjs.svg" },
+    { id: "3", name: "Laravel", icon: "/img/icons/laravel.svg" },
+    { id: "4", name: "Inertia.js", icon: "/img/icons/inertia.svg" },
+    { id: "5", name: "TypeScript", icon: "/img/icons/typescript.svg" },
+    { id: "6", name: "JavaScript", icon: "/img/icons/javascript.svg" },
+    { id: "7", name: "PHP", icon: "/img/icons/php.svg" },
+    { id: "8", name: "Tailwind CSS", icon: "/img/icons/tailwindcss.svg" },
+    { id: "9", name: "Bootstrap", icon: "/img/icons/bootstrap.svg" },
+    { id: "10", name: "MySQL", icon: "/img/icons/mysql.svg" },
+    { id: "11", name: "Git", icon: "/img/icons/git.svg" },
+    { id: "12", name: "Vercel", icon: "/img/icons/vercel.svg" },
+]
 
 // --- Components ---
 
@@ -160,7 +168,7 @@ const TabButton = ({
             "relative flex-1 px-4 py-4 cursor-pointer text-sm sm:text-base font-medium transition-all duration-300 rounded-md flex flex-col items-center justify-center gap-2",
             active
                 ? "text-primary-foreground"
-                : "text-muted-foreground hover:text-foreground hover:bg-muted/80"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted/80 dark:hover:bg-black/50"
         )}
     >
         {active && (
@@ -241,9 +249,9 @@ const ProjectCard = ({ project }: { project: Project }) => (
         inline-flex items-center gap-1
         bg-accent text-accent-foreground
         dark:text-white
-        hover:opacity-90 px-5
+        hover:bg-accent/80 cursor-pointer px-5
         transition-all duration-300
-        rounded
+        rounded hover:scale-110 
     "
                     >
                         Details
@@ -294,14 +302,32 @@ const TechCard = ({ stack }: { stack: TechStack }) => (
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         whileHover={{ y: -5 }}
-        className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border/50 shadow-sm hover:shadow-md hover:border-accent/30 transition-all duration-300"
+        className="
+            cursor-pointer
+            flex flex-col items-center justify-center
+            gap-3 p-5
+            rounded-md
+            bg-card
+            border border-border/50
+            shadow-sm
+            hover:shadow-md hover:border-accent/30
+            transition-all duration-300
+        "
     >
-        <div className="p-2.5 rounded-lg bg-accent/10 text-accent">
-            <stack.icon className="w-6 h-6" />
+        <div className="w-14 h-14 flex items-center justify-center">
+            <img
+                src={stack.icon}
+                alt={stack.name}
+                className="max-w-full max-h-full object-contain"
+            />
         </div>
-        <span className="font-medium text-foreground">{stack.name}</span>
+
+        <span className="font-medium text-foreground text-sm">
+            {stack.name}
+        </span>
     </motion.div>
-);
+)
+
 
 export default function PortfolioSection() {
     const [activeTab, setActiveTab] = useState<"projects" | "tech" | "certificates">("projects");

@@ -94,7 +94,8 @@ export default function AboutSection() {
         w-full sm:w-auto
         shadow-lg shadow-accent/25
         transition-all duration-300 ease-out
-        hover:scale-105 hover:shadow-accent/40
+        hover:scale-105 hover:shadow-accent/40 hover:bg-accent/80
+        cursor-pointer
     "
                             >
                                 Download CV
