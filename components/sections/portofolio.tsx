@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Heading from "./heading";
 import { Background } from "../background";
 import { motion, AnimatePresence } from "framer-motion";
@@ -22,15 +22,13 @@ import {
     Smartphone,
     Code,
     Eye,
-    ArrowRight
+    ArrowRight,
+    ZoomIn
 } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import ReactIcon from "@/public/img/react.svg"
-import NextIcon from "@/public/img/nextjs.svg"
-import LaravelIcon from "@/public/img/laravel.svg"
-import InertiaIcon from "@/public/img/inertia.svg"
+
 
 // --- Types ---
 type Project = {
@@ -45,10 +43,7 @@ type Project = {
 
 type Certificate = {
     id: string;
-    title: string;
-    issuer: string;
-    date: string;
-    image: string;
+    images: string[];
 };
 
 type TechStack = {
@@ -108,33 +103,37 @@ const PROJECTS: Project[] = [
 const CERTIFICATES: Certificate[] = [
     {
         id: "1",
-        title: "Full Stack Web Development",
-        issuer: "Udemy",
-        date: "2025",
-        image: "/img/sertificates/sertificate2.jpg",
+        images: [
+            "/img/certificates/sertificate1-page-1.jpg",
+            "/img/certificates/sertificate1-page-2.jpg",
+        ],
     },
     {
         id: "2",
-        title: "React - The Complete Guide",
-        issuer: "Academind",
-        date: "2024",
-        image: "/img/sertificate.jpg",
+        images: ["/img/certificates/sertificate2.jpg"],
     },
     {
         id: "3",
-        title: "Advanced CSS and Sass",
-        issuer: "Coursera",
-        date: "2024",
-        image: "/img/sertificate.jpg",
+        images: [
+            "/img/certificates/sertificate3-page-1.jpg",
+            "/img/certificates/sertificate3-page-2.jpg",
+        ],
     },
     {
         id: "4",
-        title: "JavaScript Algorithms",
-        issuer: "FreeCodeCamp",
-        date: "2023",
-        image: "/img/sertificate.jpg",
+        images: ["/img/certificates/sertificate4.jpg"],
     },
+    {
+        id: "5",
+        images: ["/img/certificates/sertificate5.jpg"],
+    },
+    {
+        id: "6",
+        images: ["/img/certificates/sertificate6.jpg"],
+    },
+
 ];
+
 
 const TECH_STACKS: TechStack[] = [
     { id: "1", name: "React", icon: "/img/icons/react.svg" },
@@ -266,7 +265,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
 
 const CertificateCard = ({
     cert,
-    onView
+    onView,
 }: {
     cert: Certificate;
     onView: (cert: Certificate) => void;
@@ -274,25 +273,29 @@ const CertificateCard = ({
     <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="group relative cursor-pointer rounded-md overflow-hidden border border-border/50 bg-card shadow-sm hover:shadow-md transition-all duration-300"
+        className="group cursor-pointer rounded-md border border-border/50 bg-card shadow-sm hover:shadow-md transition-all duration-300 p-3"
         onClick={() => onView(cert)}
     >
-        <div className="aspect-[4/3] p-4 relative bg-muted">
+        {/* Image Wrapper */}
+        <div className="relative aspect-[4/3] overflow-hidden rounded-md border">
             <Image
-                src={cert.image}
-                alt={cert.title}
+                src={cert.images[0]}
+                alt={`Certificate ${cert.id}`}
                 fill
-                className="object-cover p-2 transition-transform duration-500 group-hover:scale-105"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            {/* Hover Overlay */}
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-white">
-                <Maximize2 className="w-8 h-8 mb-2 drop-shadow-md" />
-                <span className="text-sm font-medium tracking-wide">View Certificate</span>
+
+            {/* Hover Overlay (ONLY covers image) */}
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center flex-col">
+                <ZoomIn className="w-12 h-12 text-white mb-2" />
+                <span className="text-white text-sm font-medium tracking-wide">
+                    View Certificate
+                </span>
             </div>
         </div>
-
     </motion.div>
 );
+
 
 const TechCard = ({ stack }: { stack: TechStack }) => (
     <motion.div
@@ -331,6 +334,23 @@ export default function PortfolioSection() {
     const [showAllProjects, setShowAllProjects] = useState(false);
     const [showAllCerts, setShowAllCerts] = useState(false);
     const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const handleView = (cert: Certificate) => {
+        setCurrentIndex(0);   // RESET DULU
+        setSelectedCert(cert);
+    };
+
+    const handleClose = () => {
+        setSelectedCert(null);
+    };
+
+    useEffect(() => {
+        if (selectedCert) {
+            setCurrentIndex(0);
+        }
+    }, [selectedCert]);
+
 
     // Pagination Logic
     const visibleProjects = showAllProjects ? PROJECTS : PROJECTS.slice(0, 3);
@@ -447,7 +467,7 @@ export default function PortfolioSection() {
                                         <CertificateCard
                                             key={cert.id}
                                             cert={cert}
-                                            onView={setSelectedCert}
+                                            onView={handleView}
                                         />
                                     ))}
                                 </div>
@@ -474,47 +494,84 @@ export default function PortfolioSection() {
                 </div>
             </div>
 
-            {/* --- Certificate Modal --- */}
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
                 {selectedCert && (
                     <motion.div
+                        className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[99999999999999999999999]"
+
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
+                        key={selectedCert.id}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"
-                        onClick={() => setSelectedCert(null)}
+                        transition={{ duration: 0.25 }}
                     >
-                        <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
-                            className="relative max-w-5xl w-full max-h-[90vh] aspect-video rounded-xl overflow-hidden shadow-2xl bg-black"
-                            onClick={(e) => e.stopPropagation()}
+                        {/* Close Button */}
+                        <button
+                            onClick={handleClose}
+                            className="absolute top-6 right-6 text-white text-2xl font-bold hover:opacity-70 cursor-pointer transition"
                         >
-                            <Button
-                                size="icon"
-                                variant="ghost"
-                                className="absolute top-4 right-4 z-50 text-white hover:bg-white/20 rounded-full"
-                                onClick={() => setSelectedCert(null)}
+                            ✕
+                        </button>
+
+                        <div className="relative max-w-5xl w-full px-6 flex flex-col items-center">
+
+                            {/* IMAGE ANIMATION */}
+                            <motion.div
+                                key={currentIndex}
+                                initial={{ scale: 0.85, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                exit={{ scale: 0.9, opacity: 0 }}
+                                transition={{ duration: 0.35, ease: "easeOut" }}
+                                className="relative w-full h-[80vh]"
                             >
-                                <X className="w-6 h-6" />
-                            </Button>
+                                <Image
+                                    src={selectedCert.images[currentIndex]}
+                                    alt={`Certificate ${selectedCert.id}`}
+                                    fill
+                                    className="object-contain"
+                                />
+                            </motion.div>
 
-                            <Image
-                                src={selectedCert.image}
-                                alt={selectedCert.title}
-                                fill
-                                className="object-contain"
-                            />
+                            {/* NAVIGATION ANIMATION */}
+                            {selectedCert.images.length > 1 && (
+                                <motion.div
+                                    initial={{ y: 20, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ delay: 0.2, duration: 0.3 }}
+                                    className="mt-6 flex items-center justify-center gap-6"
+                                >
+                                    {/* Prev */}
+                                    <button
+                                        onClick={() => setCurrentIndex((prev) => prev - 1)}
+                                        disabled={currentIndex === 0}
+                                        className="text-white text-xl disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                                    >
+                                        {"<"}
+                                    </button>
 
-                            <div className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white">
-                                <h3 className="text-xl font-bold">{selectedCert.title}</h3>
-                                <p className="text-sm opacity-80">{selectedCert.issuer} • {selectedCert.date}</p>
-                            </div>
-                        </motion.div>
+                                    {/* Indicator */}
+                                    <div className="px-6 py-2 bg-white/10 text-white text-sm rounded-md backdrop-blur-md">
+                                        {currentIndex + 1} / {selectedCert.images.length}
+                                    </div>
+
+                                    {/* Next */}
+                                    <button
+                                        onClick={() => setCurrentIndex((prev) => prev + 1)}
+                                        disabled={
+                                            currentIndex === selectedCert.images.length - 1
+                                        }
+                                        className="text-white text-xl disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                                    >
+                                        {">"}
+                                    </button>
+                                </motion.div>
+                            )}
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>
+
+
         </section>
     );
 }
