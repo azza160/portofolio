@@ -383,8 +383,8 @@ export default function PortfolioSection() {
 
 
     // Pagination Logic
-    const visibleProjects = showAllProjects ? PROJECTS : PROJECTS.slice(0, 3);
-    const visibleCerts = showAllCerts ? CERTIFICATES : CERTIFICATES.slice(0, 3);
+    const visibleProjects = showAllProjects ? PROJECTS : PROJECTS.slice(0, 6);
+    const visibleCerts = showAllCerts ? CERTIFICATES : CERTIFICATES.slice(0, 6);
 
     return (
         <section id="portofolio" className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary/5 border-t border-border/20 overflow-hidden relative min-h-screen">
@@ -450,12 +450,12 @@ export default function PortfolioSection() {
                                     </AnimatePresence>
                                 </div>
 
-                                {PROJECTS.length > 3 && (
+                                {PROJECTS.length > 6 && (
                                     <div className="mt-12 flex justify-center">
                                         <Button
-                                            variant="outline"
+
                                             onClick={() => setShowAllProjects(!showAllProjects)}
-                                            className="group gap-2 border-accent/20 hover:border-accent hover:bg-accent/5"
+                                            className="group gap-2 rounded bg-accent hover:bg-accent/80 cursor-pointer py-5"
                                         >
                                             {showAllProjects ? "See Less" : "See More"}
                                             {showAllProjects ? (
@@ -506,12 +506,12 @@ export default function PortfolioSection() {
                                     </AnimatePresence>
                                 </div>
 
-                                {CERTIFICATES.length > 3 && (
+                                {CERTIFICATES.length > 6 && (
                                     <div className="mt-12 flex justify-center">
                                         <Button
                                             variant="outline"
                                             onClick={() => setShowAllCerts(!showAllCerts)}
-                                            className="group gap-2 border-accent/20 hover:border-accent hover:bg-accent/5"
+                                            className="group gap-2 rounded bg-accent hover:bg-accent/80 cursor-pointer py-5 text-white"
                                         >
                                             {showAllCerts ? "See Less" : "See More"}
                                             {showAllCerts ? (
