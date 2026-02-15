@@ -184,15 +184,40 @@ const TabButton = ({
     </button>
 );
 
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1
+        }
+    }
+};
+
+const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.5,
+            ease: "easeOut" as const
+        }
+    },
+    exit: { opacity: 0, scale: 0.95 }
+};
+
 const ProjectCard = ({ project }: { project: Project }) => (
     <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95 }}
-        className="group relative bg-card border border-border/50 rounded-md p-2 overflow-hidden shadow-sm hover:shadow-lg hover:shadow-accent/10 transition-all duration-300 flex flex-col h-full"
+        variants={cardVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        layout
+        className="group relative bg-card border border-border/50 rounded-md p-2 overflow-hidden shadow-sm hover:shadow-lg hover:shadow-accent/10 transition-[box-shadow,border-color] duration-300 flex flex-col h-full"
     >
         {/* Image Container */}
-        <div className="relative rounded-md border  aspect-video overflow-hidden bg-muted">
+        <div className="relative rounded-md border aspect-video overflow-hidden bg-muted">
             <Image
                 src={project.image}
                 alt={project.title}
@@ -243,7 +268,6 @@ const ProjectCard = ({ project }: { project: Project }) => (
                     )}
 
                     <Button
-
                         className="
         inline-flex items-center gap-1
         bg-accent text-accent-foreground
@@ -271,9 +295,12 @@ const CertificateCard = ({
     onView: (cert: Certificate) => void;
 }) => (
     <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="group cursor-pointer rounded-md border border-border/50 bg-card shadow-sm hover:shadow-md transition-all duration-300 p-3"
+        variants={cardVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        layout
+        className="group cursor-pointer rounded-md border border-border/50 bg-card shadow-sm hover:shadow-md transition-[box-shadow,border-color] duration-300 p-3"
         onClick={() => onView(cert)}
     >
         {/* Image Wrapper */}
@@ -299,8 +326,11 @@ const CertificateCard = ({
 
 const TechCard = ({ stack }: { stack: TechStack }) => (
     <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
+        variants={cardVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        layout
         whileHover={{ y: -8 }}
         className="
             cursor-pointer
@@ -311,7 +341,7 @@ const TechCard = ({ stack }: { stack: TechStack }) => (
             border border-border/50
             shadow-sm
             hover:shadow-lg hover:border-accent/80
-            transition-all duration-300
+            transition-[box-shadow,border-color] duration-300
         "
     >
         <div className="w-14 h-14 flex items-center justify-center">
@@ -407,15 +437,17 @@ export default function PortfolioSection() {
                         {activeTab === "projects" && (
                             <motion.div
                                 key="projects"
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.3 }}
+                                variants={containerVariants}
+                                initial="hidden"
+                                animate="visible"
+                                exit="hidden"
                             >
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                                    {visibleProjects.map((project) => (
-                                        <ProjectCard key={project.id} project={project} />
-                                    ))}
+                                    <AnimatePresence>
+                                        {visibleProjects.map((project) => (
+                                            <ProjectCard key={project.id} project={project} />
+                                        ))}
+                                    </AnimatePresence>
                                 </div>
 
                                 {PROJECTS.length > 3 && (
@@ -441,10 +473,10 @@ export default function PortfolioSection() {
                         {activeTab === "tech" && (
                             <motion.div
                                 key="tech"
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.3 }}
+                                variants={containerVariants}
+                                initial="hidden"
+                                animate="visible"
+                                exit="hidden"
                                 className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
                             >
                                 {TECH_STACKS.map((stack) => (
@@ -457,19 +489,21 @@ export default function PortfolioSection() {
                         {activeTab === "certificates" && (
                             <motion.div
                                 key="certificates"
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.3 }}
+                                variants={containerVariants}
+                                initial="hidden"
+                                animate="visible"
+                                exit="hidden"
                             >
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    {visibleCerts.map((cert) => (
-                                        <CertificateCard
-                                            key={cert.id}
-                                            cert={cert}
-                                            onView={handleView}
-                                        />
-                                    ))}
+                                    <AnimatePresence>
+                                        {visibleCerts.map((cert) => (
+                                            <CertificateCard
+                                                key={cert.id}
+                                                cert={cert}
+                                                onView={handleView}
+                                            />
+                                        ))}
+                                    </AnimatePresence>
                                 </div>
 
                                 {CERTIFICATES.length > 3 && (
@@ -497,8 +531,8 @@ export default function PortfolioSection() {
             <AnimatePresence mode="wait">
                 {selectedCert && (
                     <motion.div
-                        className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[99999999999999999999999]"
-
+                        className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center"
+                        style={{ zIndex: 9999999 }}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         key={selectedCert.id}
@@ -575,3 +609,4 @@ export default function PortfolioSection() {
         </section>
     );
 }
+
