@@ -108,7 +108,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
 
             {/* Tech Badges Overlay */}
             <div className="absolute bottom-3 left-3 flex flex-wrap gap-1.5 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                {project.tech.slice(0, 3).map((t, idx) => (
+                {project.tech.map((t, idx) => (
                     <span key={idx} className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-white/10 text-white backdrop-blur-md border border-white/20">
                         {t.name}
                     </span>

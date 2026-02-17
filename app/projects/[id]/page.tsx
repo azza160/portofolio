@@ -91,8 +91,8 @@ export default function ProjectDetail() {
                                     <div className="p-2 bg-card rounded transition-all duration-300 ease-out hover:scale-[1.02]">
                                         <div
                                             className={`relative rounded border border-border/50 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 ${isFirstLarge
-                                                    ? "aspect-[21/9]"   // lebih wide, tidak terlalu tinggi
-                                                    : "aspect-video"
+                                                ? "aspect-[21/9]"   // lebih wide, tidak terlalu tinggi
+                                                : "aspect-video"
                                                 }`}
                                         >
                                             <Image
