@@ -28,127 +28,7 @@ import {
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-
-// --- Types ---
-type Project = {
-    id: string;
-    title: string;
-    description: string; // Short description
-    image: string;
-    liveUrl?: string;
-    status?: "live" | "private" | "coming_soon";
-    tech: string[];
-};
-
-type Certificate = {
-    id: string;
-    images: string[];
-};
-
-type TechStack = {
-    id: string;
-    name: string;
-    icon: string;
-
-};
-
-// --- Dummy Data ---
-const PROJECTS: Project[] = [
-    {
-        id: "1",
-        title: "E-Commerce Dashboard",
-        description: "A comprehensive dashboard for managing products, orders, and analytics with real-time data visualization.",
-        image: "/img/portofolio.jpg",
-        liveUrl: "https://example.com",
-        status: "live",
-        tech: ["Next.js", "TypeScript", "Tailwind"],
-    },
-    {
-        id: "2",
-        title: "Social Media App",
-        description: "A modern social platform featuring real-time messaging, post sharing, and user interactions.",
-        image: "/img/project.2.jpg",
-        liveUrl: "https://example.com",
-        status: "live",
-        tech: ["React", "Node.js", "Socket.io"],
-    },
-    {
-        id: "3",
-        title: "Portfolio v1",
-        description: "My previous portfolio website showcasing my early work and development journey.",
-        image: "/img/project.3.jpg",
-        status: "private",
-        tech: ["HTML", "CSS", "JavaScript"],
-    },
-    {
-        id: "4",
-        title: "Task Management Tool",
-        description: "A productivity tool for teams to organize tasks, set deadlines, and track progress efficiently.",
-        image: "/img/portofolio.jpg",
-        status: "coming_soon",
-        tech: ["Vue.js", "Firebase"],
-    },
-    {
-        id: "5",
-        title: "Weather Forecast App",
-        description: "Minimalist weather application providing accurate forecasts and location-based weather data.",
-        image: "/img/portofolio.jpg",
-        liveUrl: "https://example.com",
-        status: "live",
-        tech: ["React Native", "WeatherAPI"],
-    },
-];
-
-const CERTIFICATES: Certificate[] = [
-    {
-        id: "1",
-        images: [
-            "/img/certificates/sertificate1-page-1.jpg",
-            "/img/certificates/sertificate1-page-2.jpg",
-        ],
-    },
-    {
-        id: "2",
-        images: ["/img/certificates/sertificate2.jpg"],
-    },
-    {
-        id: "3",
-        images: [
-            "/img/certificates/sertificate3-page-1.jpg",
-            "/img/certificates/sertificate3-page-2.jpg",
-        ],
-    },
-    {
-        id: "4",
-        images: ["/img/certificates/sertificate4.jpg"],
-    },
-    {
-        id: "5",
-        images: ["/img/certificates/sertificate5.jpg"],
-    },
-    {
-        id: "6",
-        images: ["/img/certificates/sertificate6.jpg"],
-    },
-
-];
-
-
-const TECH_STACKS: TechStack[] = [
-    { id: "1", name: "React", icon: "/img/icons/react.svg" },
-    { id: "2", name: "Next.js", icon: "/img/icons/nextjs.svg" },
-    { id: "3", name: "Laravel", icon: "/img/icons/laravel.svg" },
-    { id: "4", name: "Inertia.js", icon: "/img/icons/inertia.svg" },
-    { id: "5", name: "TypeScript", icon: "/img/icons/typescript.svg" },
-    { id: "6", name: "JavaScript", icon: "/img/icons/javascript.svg" },
-    { id: "7", name: "PHP", icon: "/img/icons/php.svg" },
-    { id: "8", name: "Tailwind CSS", icon: "/img/icons/tailwindcss.svg" },
-    { id: "9", name: "Bootstrap", icon: "/img/icons/bootstrap.svg" },
-    { id: "10", name: "MySQL", icon: "/img/icons/mysql.svg" },
-    { id: "11", name: "Git", icon: "/img/icons/git.svg" },
-    { id: "12", name: "Vercel", icon: "/img/icons/vercel.svg" },
-]
+import { PROJECTS, CERTIFICATES, TECH_STACKS, Project, Certificate, TechStack } from "@/lib/data";
 
 // --- Components ---
 
@@ -219,7 +99,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
         {/* Image Container */}
         <div className="relative rounded-md border aspect-video overflow-hidden bg-muted">
             <Image
-                src={project.image}
+                src={project.images[0]}
                 alt={project.title}
                 fill
                 className="object-cover rounded-md transition-transform duration-700 group-hover:scale-105"
@@ -228,9 +108,9 @@ const ProjectCard = ({ project }: { project: Project }) => (
 
             {/* Tech Badges Overlay */}
             <div className="absolute bottom-3 left-3 flex flex-wrap gap-1.5 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                {project.tech.slice(0, 3).map((t) => (
-                    <span key={t} className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-white/10 text-white backdrop-blur-md border border-white/20">
-                        {t}
+                {project.tech.slice(0, 3).map((t, idx) => (
+                    <span key={idx} className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-white/10 text-white backdrop-blur-md border border-white/20">
+                        {t.name}
                     </span>
                 ))}
             </div>
@@ -267,19 +147,21 @@ const ProjectCard = ({ project }: { project: Project }) => (
                         </span>
                     )}
 
-                    <Button
-                        className="
-        inline-flex items-center gap-1
-        bg-accent text-accent-foreground
-        dark:text-white
-        hover:bg-accent/80 cursor-pointer px-5
-        transition-all duration-300
-        rounded hover:scale-110 
-    "
-                    >
-                        Details
-                        <ArrowRight className="w-4 h-4" />
-                    </Button>
+                    <a href={`/projects/${project.id}`}>
+                        <Button
+                            className="
+            inline-flex items-center gap-1
+            bg-accent text-accent-foreground
+            dark:text-white
+            hover:bg-accent/80 cursor-pointer px-5
+            transition-all duration-300
+            rounded hover:scale-110 
+        "
+                        >
+                            Details
+                            <ArrowRight className="w-4 h-4" />
+                        </Button>
+                    </a>
 
                 </div>
             </div>
@@ -609,4 +491,3 @@ export default function PortfolioSection() {
         </section>
     );
 }
-
