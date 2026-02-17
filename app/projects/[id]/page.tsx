@@ -26,7 +26,7 @@ export default function ProjectDetail() {
                 <Background />
             </div>
 
-            <main className="relative z-10 max-w-5xl mx-auto px-6 py-24 sm:py-32">
+            <main className="relative z-10 max-w-5xl mx-auto px-6 pt-15 py-24 sm:py-32 sm:pt-15">
 
                 {/* Breadcrumb */}
                 <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">

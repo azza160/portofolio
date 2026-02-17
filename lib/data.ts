@@ -149,7 +149,7 @@ export const PROJECTS: Project[] = [
             { name: "Bootstrap", image: "/img/icons/bootstrap.svg" },
             { name: "MySQL", image: "/img/icons/mysql.svg" },
             { name: "Git", image: "/img/icons/git.svg" },
-            { name: "CSS", image: "/img/icons/css.svg" },
+
             { name: "JavaScript", image: "/img/icons/javascript.svg" }
         ],
     },
@@ -177,7 +177,6 @@ export const PROJECTS: Project[] = [
 
         ],
     },
-
     {
         id: "5",
         title: "Coklat Harmoni",
@@ -191,6 +190,30 @@ export const PROJECTS: Project[] = [
             "Interactive UI elements for improved user engagement",
             "Smooth animations and transition effects",
             "Responsive design optimized for desktop, tablet, and mobile devices"
+        ],
+        tech: [
+            { name: "React", image: "/img/icons/react.svg" },
+            { name: "JavaScript", image: "/img/icons/javascript.svg" },
+            { name: "Tailwind CSS", image: "/img/icons/tailwindcss.svg" },
+            { name: "Git", image: "/img/icons/git.svg" },
+            { name: "Vercel", image: "/img/icons/vercel.svg" },
+
+        ],
+    },
+    {
+        id: "6",
+        title: "SerbaTrendi",
+        description: "SerbaTrendi is a responsive product showcase website built to practice API integration and dynamic content rendering using external product data.",
+        images: ["/img/projects/project6/img1.png", "/img/projects/project6/img2.png", "/img/projects/project6/img3.png", "/img/projects/project6/img4.png"],
+        liveUrl: "https://serba-trendi.vercel.app/",
+        status: "live",
+        features: [
+            "Multi-section landing page including About Us and Contact section",
+            "Featured products section displaying selected highlighted items",
+            "Dynamic product listing page rendered from external API data",
+            "Product search functionality for quick item discovery",
+            "Product filtering system for easier browsing",
+            "Responsive design optimized for desktop and mobile devices"
         ],
         tech: [
             { name: "React", image: "/img/icons/react.svg" },
