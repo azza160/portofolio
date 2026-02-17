@@ -46,8 +46,8 @@ export const PROJECTS: Project[] = [
     {
         id: "1",
         title: "E-Commerce Dashboard",
-        description: "A comprehensive dashboard for managing products, orders, and analytics with real-time data visualization.",
-        images: ["/img/portofolio.jpg", "/img/project.2.jpg"],
+        description: "project ini adalah platform pembelajaran kosakata bahasa jepang untuk pemula,yang menerapkan sistem gamifikasi agar membuat proses belajar lebih menarik.",
+        images: ["/img/portofolio.jpg", "/img/project.2.jpg", "/img/project.3.jpg", "/img/portofolio.jpg", "/img/project.2.jpg"],
         liveUrl: "https://example.com",
         status: "live",
         features: [
