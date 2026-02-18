@@ -6,7 +6,7 @@ import Link from "next/link";
 import { PROJECTS } from "@/lib/data";
 import { Background } from "@/components/background";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, ChevronRight } from "lucide-react";
+import { ExternalLink, Github, ChevronRight, Clock, Lock } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function ProjectDetail() {
@@ -52,22 +52,34 @@ export default function ProjectDetail() {
                     </p>
 
                     <div className="flex flex-wrap gap-4 mt-8">
-                        {project.liveUrl && (
-                            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                                <Button className="gap-2 bg-accent text-accent-foreground rounded py-5 cursor-pointer shadow-lg shadow-accent/25
-        transition-all duration-300 ease-out
-        hover:scale-105 hover:shadow-accent/40 hover:bg-accent/80">
-                                    <ExternalLink className="w-4 h-4" /> Live Demo
-                                </Button>
+                        {project.status === "live" ? (
+                            <a
+                                href={project.liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-4 text-sm font-semibold 
+    bg-accent text-white rounded py-3 
+    hover:bg-accent/80 
+    transition-all duration-300 ease-out hover:scale-110 cursor-pointer"
+                            >
+                                Live Demo <ExternalLink className="w-4 h-4" />
                             </a>
+
+                        ) : project.status === "private" ? (
+                            <Button
+                                variant="secondary"
+                                disabled
+                                className="inline-flex items-center gap-2 text-sm rounded py-5 font-semibold opacity-60 cursor-not-allowed"
+                            >
+                                <Lock className="w-4 h-4" />
+                                Private Repository
+                            </Button>
+                        ) : (
+                            <span className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground/60 cursor-not-allowed">
+                                <Clock className="w-4 h-4" /> Coming Soon
+                            </span>
                         )}
-                        {project.repoUrl && (
-                            <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
-                                <Button variant="outline" className="gap-2">
-                                    <Github className="w-4 h-4" /> Source Code
-                                </Button>
-                            </a>
-                        )}
+
                     </div>
                 </motion.div>
 
