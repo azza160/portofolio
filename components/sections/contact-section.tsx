@@ -10,7 +10,7 @@ export default function ContactSection() {
     // Social Media Data
     const socialLinks = [
         { icon: Github, href: "https://github.com/azza160", label: "Github" },
-        { icon: Linkedin, href: "#", label: "LinkedIn" }, // Update with real link
+        { icon: Linkedin, href: "https://www.linkedin.com/in/azza-irul-3700873b2/", label: "LinkedIn" }, // Update with real link
         { icon: Instagram, href: "https://www.instagram.com/azza0086/", label: "Instagram" }, // Update with real link
     ]
 
