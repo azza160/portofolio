@@ -40,12 +40,148 @@ export const TECH_STACKS: TechStack[] = [
     { id: "10", name: "MySQL", icon: "/img/icons/mysql.svg" },
     { id: "11", name: "Git", icon: "/img/icons/git.svg" },
     { id: "12", name: "Vercel", icon: "/img/icons/vercel.svg" },
+    { id: "13", name: "Alpine.js", icon: "/img/icons/Alpine.js.svg" }
 ];
 
 export const PROJECTS: Project[] = [
-
     {
         id: "1",
+        title: "SerbaTrendi",
+        description: "SerbaTrendi is a responsive product showcase website built to practice API integration and dynamic content rendering using external product data.",
+        images: ["/img/projects/project6/img1.png", "/img/projects/project6/img2.png", "/img/projects/project6/img3.png", "/img/projects/project6/img4.png"],
+        liveUrl: "https://serba-trendi.vercel.app/",
+        status: "live",
+        features: [
+            "Multi-section landing page including About Us and Contact section",
+            "Featured products section displaying selected highlighted items",
+            "Dynamic product listing page rendered from external API data",
+            "Product search functionality for quick item discovery",
+            "Product filtering system for easier browsing",
+            "Responsive design optimized for desktop and mobile devices"
+        ],
+        tech: [
+            { name: "React", image: "/img/icons/react.svg" },
+            { name: "JavaScript", image: "/img/icons/javascript.svg" },
+            { name: "Tailwind CSS", image: "/img/icons/tailwindcss.svg" },
+            { name: "Git", image: "/img/icons/git.svg" },
+            { name: "Vercel", image: "/img/icons/vercel.svg" },
+
+        ],
+    },
+    {
+        id: "2",
+        title: "Coklat Harmoni",
+        description: "A modern chocolate store landing page showcasing featured products, interactive sections, and smooth animations. The project focuses on visual presentation, product layout structuring, and responsive user experience.",
+        images: ["/img/projects/project5/img1.png", "/img/projects/project5/img2.png", "/img/projects/project5/img3.png", "/img/projects/project5/img4.png", "/img/projects/project5/img5.png"],
+        liveUrl: "https://website-chocolate.vercel.app/",
+        status: "live",
+        features: [
+            "Modern multi-section landing page layout",
+            "Product showcase section with structured item presentation",
+            "Interactive UI elements for improved user engagement",
+            "Smooth animations and transition effects",
+            "Responsive design optimized for desktop, tablet, and mobile devices"
+        ],
+        tech: [
+            { name: "React", image: "/img/icons/react.svg" },
+            { name: "JavaScript", image: "/img/icons/javascript.svg" },
+            { name: "Tailwind CSS", image: "/img/icons/tailwindcss.svg" },
+            { name: "Git", image: "/img/icons/git.svg" },
+            { name: "Vercel", image: "/img/icons/vercel.svg" },
+
+        ],
+    },
+    {
+        id: "3",
+        title: "To-Do List",
+        description: "A task management web application designed to help users organize and track their daily activities efficiently. The system allows users to create, categorize, filter, and monitor task progress with real-time status updates and a clean, user-friendly interface.",
+        images: ["/img/projects/project4/img1.png", "/img/projects/project4/img2.png", "/img/projects/project4/img3.png", "/img/projects/project4/img4.png", "/img/projects/project4/img5.png"],
+        liveUrl: "https://zatodo-list.vercel.app/",
+        status: "live",
+        features: [
+            "Create, update, and delete tasks with an intuitive interface",
+            "Task status management (Completed / Incomplete) with real-time updates",
+            "Task categorization system for better organization",
+            "Dynamic filtering based on task completion status",
+            "Dashboard summary displaying total, completed, and pending tasks",
+            "Dark mode and light mode toggle for improved user experienc",
+            "Responsive design optimized for both desktop and mobile devices"
+        ],
+        tech: [
+            { name: "React", image: "/img/icons/react.svg" },
+            { name: "Tailwind CSS", image: "/img/icons/tailwindcss.svg" },
+            { name: "Git", image: "/img/icons/git.svg" },
+            { name: "Vercel", image: "/img/icons/vercel.svg" },
+
+        ],
+    },
+    {
+        id: "4",
+        title: "Tech Radar",
+        description: "Tech Radar is a multi-tenant technology management platform designed to help companies document, categorize, and manage the technologies used across their organization. The system supports company-based access control, role management, and structured technology tracking to improve internal visibility and governance.",
+        images: [
+            "/img/projects/project3/image1.png",
+            "/img/projects/project3/image2.png",
+            "/img/projects/project3/image3.png",
+            "/img/projects/project3/image4.png",
+            "/img/projects/project3/image5.png",
+        ],
+        status: "private",
+        features: [
+            "Multi-company support with company creation and join via unique company code",
+            "Role-based access control with customizable permissions (Owner, Employee)",
+            "Technology radar visualization categorized by defined technology groups",
+            "CRUD management for categories, technologies, roles, and employees",
+            "Company profile management including name, status, description, and logo",
+            "Activity log tracking for monitoring system actions",
+            "Member approval system for pending company join requests",
+            "Responsive dashboard with authentication, profile management, and notification system"
+        ],
+        tech: [
+            { name: "Laravel", image: "/img/icons/laravel.svg" },
+            { name: "PHP", image: "/img/icons/php.svg" },
+            { name: "Bootstrap", image: "/img/icons/bootstrap.svg" },
+            { name: "MySQL", image: "/img/icons/mysql.svg" },
+            { name: "Git", image: "/img/icons/git.svg" },
+
+            { name: "JavaScript", image: "/img/icons/javascript.svg" }
+        ],
+    },
+    {
+        id: "5",
+        title: "HerbalCare",
+        description: "HerbalCare is a digital consultation platform that connects certified herbal practitioners with users seeking personalized health guidance. The system enables both online and offline consultation bookings, real-time communication, and educational article management within a secure multi-role environment.",
+        images: [
+            "/img/projects/project2/image1.png",
+            "/img/projects/project2/image2.png",
+            "/img/projects/project2/image3.png",
+            "/img/projects/project2/image4.png",
+            "/img/projects/project2/image5.png",
+        ],
+        liveUrl: "#",
+        status: "private",
+        features: [
+            "Multi-role authentication system (Admin, User, Herbal Practitioner)",
+            "Real-time chat system between users and herbal practitioners",
+            "In-app notification system for consultation updates and messages",
+            "Online and offline consultation booking management",
+            "Admin-controlled article management system for health education content",
+            "User and practitioner profile settings customization",
+            "Fully responsive design optimized for desktop and mobile devices"
+        ],
+        tech: [
+            { name: "React", image: "/img/icons/react.svg" },
+            { name: "Laravel", image: "/img/icons/laravel.svg" },
+            { name: "Inertia.js", image: "/img/icons/inertia.svg" },
+            { name: "JavaScript", image: "/img/icons/javascript.svg" },
+            { name: "PHP", image: "/img/icons/php.svg" },
+            { name: "Tailwind CSS", image: "/img/icons/tailwindcss.svg" },
+            { name: "MySQL", image: "/img/icons/mysql.svg" },
+            { name: "Git", image: "/img/icons/git.svg" },
+        ],
+    },
+    {
+        id: "6",
         title: "Kotobee",
         description: "KotoBee is a gamified Japanese vocabulary learning platform designed to guide beginners from zero to structured mastery. The system integrates level progression, experience points (EXP), quizzes, streak tracking, and interactive audio-based learning to create an engaging and structured learning journey. Users unlock learning materials progressively through a level-based system, ensuring consistent improvement and long-term retention.",
         images: [
@@ -89,139 +225,40 @@ export const PROJECTS: Project[] = [
         ],
     },
     {
-        id: "2",
-        title: "HerbalCare",
-        description: "HerbalCare is a digital consultation platform that connects certified herbal practitioners with users seeking personalized health guidance. The system enables both online and offline consultation bookings, real-time communication, and educational article management within a secure multi-role environment.",
+        id: "7",
+        title: "Petshop",
+        description: "This project is a Petshop Website that provides information about a pet shop, including the animals and products available in the store. The website features a landing page where visitors can explore a list of pets and various pet products offered by the shop. In addition, the system includes an admin panel that allows store managers to easily manage and update the data displayed on the website, such as pet listings, product information, and other content shown on the landing page, making it easier for the shop owner to keep the website organized and up to date.",
         images: [
-            "/img/projects/project2/image1.png",
-            "/img/projects/project2/image2.png",
-            "/img/projects/project2/image3.png",
-            "/img/projects/project2/image4.png",
-            "/img/projects/project2/image5.png",
+            "/img/projects/project7/img1.png",
+            "/img/projects/project7/img2.png",
+            "/img/projects/project7/img3.png",
+            "/img/projects/project7/img4.png",
+            "/img/projects/project7/img5.png",
+            "/img/projects/project7/img6.png",
+            "/img/projects/project7/img7.png",
         ],
-        liveUrl: "#",
+
+        liveUrl: "https://example.com",
         status: "private",
         features: [
-            "Multi-role authentication system (Admin, User, Herbal Practitioner)",
-            "Real-time chat system between users and herbal practitioners",
-            "In-app notification system for consultation updates and messages",
-            "Online and offline consultation booking management",
-            "Admin-controlled article management system for health education content",
-            "User and practitioner profile settings customization",
-            "Fully responsive design optimized for desktop and mobile devices"
+            "Interactive and responsive landing page introducing the pet shop and its services",
+            "Animal listing page displaying pets available in the pet shop with detailed information",
+            "Product listing page showcasing various pet shop products",
+            "Search, filter, and pagination features on each data listing page for easier browsing",
+            "Admin dashboard for managing and monitoring website content",
+            "Category management feature to organize animal and product classifications",
+            "Animal management system allowing admins to add, edit, and delete pet data",
+            "Product management system enabling admins to manage product listings and information"
         ],
+
         tech: [
-            { name: "React", image: "/img/icons/react.svg" },
             { name: "Laravel", image: "/img/icons/laravel.svg" },
-            { name: "Inertia.js", image: "/img/icons/inertia.svg" },
             { name: "JavaScript", image: "/img/icons/javascript.svg" },
             { name: "PHP", image: "/img/icons/php.svg" },
             { name: "Tailwind CSS", image: "/img/icons/tailwindcss.svg" },
             { name: "MySQL", image: "/img/icons/mysql.svg" },
             { name: "Git", image: "/img/icons/git.svg" },
-        ],
-    },
-    {
-        id: "3",
-        title: "Tech Radar",
-        description: "Tech Radar is a multi-tenant technology management platform designed to help companies document, categorize, and manage the technologies used across their organization. The system supports company-based access control, role management, and structured technology tracking to improve internal visibility and governance.",
-        images: [
-            "/img/projects/project3/image1.png",
-            "/img/projects/project3/image2.png",
-            "/img/projects/project3/image3.png",
-            "/img/projects/project3/image4.png",
-            "/img/projects/project3/image5.png",
-        ],
-        status: "private",
-        features: [
-            "Multi-company support with company creation and join via unique company code",
-            "Role-based access control with customizable permissions (Owner, Employee)",
-            "Technology radar visualization categorized by defined technology groups",
-            "CRUD management for categories, technologies, roles, and employees",
-            "Company profile management including name, status, description, and logo",
-            "Activity log tracking for monitoring system actions",
-            "Member approval system for pending company join requests",
-            "Responsive dashboard with authentication, profile management, and notification system"
-        ],
-        tech: [
-            { name: "Laravel", image: "/img/icons/laravel.svg" },
-            { name: "PHP", image: "/img/icons/php.svg" },
-            { name: "Bootstrap", image: "/img/icons/bootstrap.svg" },
-            { name: "MySQL", image: "/img/icons/mysql.svg" },
-            { name: "Git", image: "/img/icons/git.svg" },
-
-            { name: "JavaScript", image: "/img/icons/javascript.svg" }
-        ],
-    },
-    {
-        id: "4",
-        title: "To-Do List",
-        description: "A task management web application designed to help users organize and track their daily activities efficiently. The system allows users to create, categorize, filter, and monitor task progress with real-time status updates and a clean, user-friendly interface.",
-        images: ["/img/projects/project4/img1.png", "/img/projects/project4/img2.png", "/img/projects/project4/img3.png", "/img/projects/project4/img4.png", "/img/projects/project4/img5.png"],
-        liveUrl: "https://zatodo-list.vercel.app/",
-        status: "live",
-        features: [
-            "Create, update, and delete tasks with an intuitive interface",
-            "Task status management (Completed / Incomplete) with real-time updates",
-            "Task categorization system for better organization",
-            "Dynamic filtering based on task completion status",
-            "Dashboard summary displaying total, completed, and pending tasks",
-            "Dark mode and light mode toggle for improved user experienc",
-            "Responsive design optimized for both desktop and mobile devices"
-        ],
-        tech: [
-            { name: "React", image: "/img/icons/react.svg" },
-            { name: "Tailwind CSS", image: "/img/icons/tailwindcss.svg" },
-            { name: "Git", image: "/img/icons/git.svg" },
-            { name: "Vercel", image: "/img/icons/vercel.svg" },
-
-        ],
-    },
-    {
-        id: "5",
-        title: "Coklat Harmoni",
-        description: "A modern chocolate store landing page showcasing featured products, interactive sections, and smooth animations. The project focuses on visual presentation, product layout structuring, and responsive user experience.",
-        images: ["/img/projects/project5/img1.png", "/img/projects/project5/img2.png", "/img/projects/project5/img3.png", "/img/projects/project5/img4.png", "/img/projects/project5/img5.png"],
-        liveUrl: "https://website-chocolate.vercel.app/",
-        status: "live",
-        features: [
-            "Modern multi-section landing page layout",
-            "Product showcase section with structured item presentation",
-            "Interactive UI elements for improved user engagement",
-            "Smooth animations and transition effects",
-            "Responsive design optimized for desktop, tablet, and mobile devices"
-        ],
-        tech: [
-            { name: "React", image: "/img/icons/react.svg" },
-            { name: "JavaScript", image: "/img/icons/javascript.svg" },
-            { name: "Tailwind CSS", image: "/img/icons/tailwindcss.svg" },
-            { name: "Git", image: "/img/icons/git.svg" },
-            { name: "Vercel", image: "/img/icons/vercel.svg" },
-
-        ],
-    },
-    {
-        id: "6",
-        title: "SerbaTrendi",
-        description: "SerbaTrendi is a responsive product showcase website built to practice API integration and dynamic content rendering using external product data.",
-        images: ["/img/projects/project6/img1.png", "/img/projects/project6/img2.png", "/img/projects/project6/img3.png", "/img/projects/project6/img4.png"],
-        liveUrl: "https://serba-trendi.vercel.app/",
-        status: "live",
-        features: [
-            "Multi-section landing page including About Us and Contact section",
-            "Featured products section displaying selected highlighted items",
-            "Dynamic product listing page rendered from external API data",
-            "Product search functionality for quick item discovery",
-            "Product filtering system for easier browsing",
-            "Responsive design optimized for desktop and mobile devices"
-        ],
-        tech: [
-            { name: "React", image: "/img/icons/react.svg" },
-            { name: "JavaScript", image: "/img/icons/javascript.svg" },
-            { name: "Tailwind CSS", image: "/img/icons/tailwindcss.svg" },
-            { name: "Git", image: "/img/icons/git.svg" },
-            { name: "Vercel", image: "/img/icons/vercel.svg" },
-
+            { name: "Alpine.js", image: "/img/icons/Alpine.js.svg" },
         ],
     },
 ];

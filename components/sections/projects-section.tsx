@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { Badge } from '@/components/ui/badge'
 import Image from 'next/image'
-import { projects } from '@/lib/data/projects'
+import { PROJECTS } from '@/lib/data'
 
 export default function ProjectsSection() {
     const containerVariants = {
@@ -53,7 +53,7 @@ export default function ProjectsSection() {
                     </div>
 
                     <div className="grid grid-cols-1 gap-12">
-                        {projects.map((project) => (
+                        {[...PROJECTS].reverse().map((project) => (
                             <motion.div
                                 key={project.id}
                                 variants={itemVariants}
@@ -65,7 +65,7 @@ export default function ProjectsSection() {
                                     <div className="lg:col-span-5 aspect-video md:aspect-[4/3] lg:aspect-square relative overflow-hidden rounded-2xl bg-muted"
                                     >
                                         <Image
-                                            src={project.image}
+                                            src={project.images[0]}
                                             alt={project.title}
                                             fill
                                             className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -85,13 +85,13 @@ export default function ProjectsSection() {
                                         </div>
 
                                         <div className="flex flex-wrap gap-2 pt-2">
-                                            {project.techStack.map((tag) => (
+                                            {project.tech.map((tag) => (
                                                 <Badge
-                                                    key={tag}
+                                                    key={tag.name}
                                                     variant="secondary"
                                                     className="px-3 py-1 text-xs font-medium bg-secondary/50 border border-border/50 rounded-full"
                                                 >
-                                                    {tag}
+                                                    {tag.name}
                                                 </Badge>
                                             ))}
                                         </div>

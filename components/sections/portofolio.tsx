@@ -265,7 +265,8 @@ export default function PortfolioSection() {
 
 
     // Pagination Logic
-    const visibleProjects = showAllProjects ? PROJECTS : PROJECTS.slice(0, 6);
+    const reversedProjects = [...PROJECTS].reverse();
+    const visibleProjects = showAllProjects ? reversedProjects : reversedProjects.slice(0, 6);
     const visibleCerts = showAllCerts ? CERTIFICATES : CERTIFICATES.slice(0, 6);
 
     return (
